@@ -2,14 +2,16 @@ import sbt._
 
 object Dependencies {
 
-  val playWsStandaloneVersion = "1.1.9"
-  val playWS = "com.typesafe.play" %% "play-ahc-ws-standalone" % playWsStandaloneVersion
-  val playWSjson = "com.typesafe.play" %% "play-ws-standalone-json" % playWsStandaloneVersion
-  val playJson_211 = "com.typesafe.play" %% "play-json" % "2.4.3"
+  val playVersion = "2.4.3"
+  val playWS = "com.typesafe.play" %% "play-ws" % playVersion
+  val playJson_211 = "com.typesafe.play" %% "play-json" % playVersion
 
   val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
-  def playJson(scalaVersion: String): ModuleID = withScalaVersion(scalaVersion)(
+  // 2.11 -> WS 2.4.3
+  // 2.12 -> 2.6 most recent
+
+  def playWS(scalaVersion: String): ModuleID = withScalaVersion(scalaVersion)(
     playWSjson,
     playJson_211
   )
